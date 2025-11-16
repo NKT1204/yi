@@ -2,8 +2,9 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import OurServices from "@/components/OurServices";
-import WhatWeBring from "@/components/WhatWeBring";
 import AmazingInitiatives from "@/components/AmazingInitiatives";
+import Testimonials from "@/components/Testimonials";
+import WhatWeBring from "@/components/WhatWeBring";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <OurServices />
       <AmazingInitiatives />
       <WhatWeBring />
+      <Testimonials />
       <Footer />
     </>
   );
