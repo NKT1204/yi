@@ -1,14 +1,40 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const apfelGrotezk = localFont({
+  src: [
+    {
+      path: "../public/fonts/ApfelGrotezk-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/ApfelGrotezk-Mittel.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/ApfelGrotezk-Satt.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/ApfelGrotezk-Fett.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-apfel-grotezk",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  variable: "--font-instrument-serif",
+  display: "swap",
 });
 
 export const metadata = {
@@ -20,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${apfelGrotezk.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>

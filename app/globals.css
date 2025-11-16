@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #F5A741;
+  --color-secondary: #9A211D;
+  --color-tertiary: #302F25;
+  font-family: var(--font-apfel-grotezk), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-apfel-grotezk), sans-serif;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.instrument-serif-regular {
+  font-family: var(--font-instrument-serif), serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.instrument-serif-regular-italic {
+  font-family: var(--font-instrument-serif), serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Button rolling text animation */
+.button-char-container {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.button-char-stack {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-rolling-no-animate .button-char-stack {
+  transition: none !important;
+}
+
+.button-char-item {
+  display: block;
+  flex-shrink: 0;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.button-rolling-hovered .button-char-stack {
+  transform: translateY(-50%);
 }
