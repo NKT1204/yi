@@ -65,7 +65,7 @@ export default function AmazingInitiatives() {
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         {testimonials.map((testimonial) => (
                             <div key={testimonial.author.name} className="h-full">
-                                <figure className="flex h-full flex-col rounded-xl border bg-white border-gray-200 shadow-2xs p-8 leading-relaxed">
+                                <figure className="flex h-full flex-col rounded-xl border bg-white border-gray-200 shadow-2xs p-8 leading-relaxed transition-transform duration-200 hover:-translate-y-1">
                                     <div className="mb-3 text-2xl text-[var(--color-secondary)] instrument-serif-regular">{testimonial.author.name}</div>
                                     <blockquote className="text-gray-700 flex-1">
                                         <p>{`${testimonial.body}`}</p>

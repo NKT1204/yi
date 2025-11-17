@@ -25,7 +25,7 @@ const stats = [
 
 export default function WhatWeBring() {
     return (
-        <section className="bg-[var(--color-secondary)] text-white py-8 md:py-24 mx-4 rounded-xl">
+        <section className="bg-[var(--color-secondary)] text-white py-8 pb-0 md:pb-12 md:py-24 mx-4 rounded-xl">
             <Ctnr>
                 <div className="text-center space-y-4 mb-12">
                     <p className="text-sm uppercase tracking-[0.35em] text-white/70">
