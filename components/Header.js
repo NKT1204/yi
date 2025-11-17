@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Ctnr from "@/components/Ctnr";
 import Button from "@/components/Button";
+import RollingLink from "@/components/RollingLink";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,18 +31,18 @@ export default function Header() {
                 {/* Navigation items on the right */}
                 <nav className="relative flex items-center gap-4">
                     <div className="hidden items-center gap-6 md:flex">
-                        <Link
+                        <RollingLink
                             href="#services"
                             className="text-[var(--color-tertiary)] hover:text-[var(--color-primary)] transition-colors"
                         >
                             Our Services
-                        </Link>
-                        <Link
+                        </RollingLink>
+                        <RollingLink
                             href="#about"
                             className="text-[var(--color-tertiary)] hover:text-[var(--color-primary)] transition-colors"
                         >
                             About Us
-                        </Link>
+                        </RollingLink>
                     </div>
                     <Link href="#contact">
                         <Button className="bg-[var(--color-tertiary)] text-white">
@@ -63,20 +64,20 @@ export default function Header() {
                     {isMenuOpen && (
                         <div className="absolute right-0 top-full mt-3 w-48 rounded-xl border border-gray-100 bg-white p-3 shadow-lg md:hidden">
                             <div className="flex flex-col gap-3">
-                                <Link
+                                <RollingLink
                                     href="#services"
                                     className="text-[var(--color-tertiary)] transition-colors hover:text-[var(--color-primary)]"
                                     onClick={handleCloseMenu}
                                 >
                                     Our Services
-                                </Link>
-                                <Link
+                                </RollingLink>
+                                <RollingLink
                                     href="#about"
                                     className="text-[var(--color-tertiary)] transition-colors hover:text-[var(--color-primary)]"
                                     onClick={handleCloseMenu}
                                 >
                                     About Us
-                                </Link>
+                                </RollingLink>
                             </div>
                         </div>
                     )}

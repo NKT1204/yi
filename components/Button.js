@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import useRollingText from '@/hooks/useRollingText';
 
 export default function Button({
     children,
@@ -11,38 +11,16 @@ export default function Button({
     iconOnly = false,
     ...props
 }) {
-    const [isHovered, setIsHovered] = useState(false);
-    const [wasClicked, setWasClicked] = useState(false);
-    
-    // Extract text content from children
-    const getTextContent = (node) => {
-        if (typeof node === 'string') return node;
-        if (typeof node === 'number') return String(node);
-        if (Array.isArray(node)) return node.map(getTextContent).join('');
-        if (node?.props?.children) return getTextContent(node.props.children);
-        return '';
-    };
-    
-    const text = getTextContent(children);
-    const shouldAnimateCharacters = !iconOnly && variant !== "ghost" && text.length > 0;
-    const characters = shouldAnimateCharacters ? text.split('') : [];
-    
-    const handleClick = (e) => {
-        setIsHovered(false);
-        setWasClicked(true);
-        onClick?.(e);
-    };
-    
-    const handleMouseEnter = () => {
-        setWasClicked(false);
-        setIsHovered(true);
-    };
-    
-    const handleMouseLeave = () => {
-        if (!wasClicked) {
-            setIsHovered(false);
-        }
-    };
+    const {
+        characters,
+        shouldAnimate,
+        isHovered,
+        wasClicked,
+        getTransitionDelay,
+        handleMouseEnter,
+        handleMouseLeave,
+        handleClick,
+    } = useRollingText(children, { disabled: iconOnly || variant === "ghost" });
     
     const baseClasses = [
         'button-rolling',
@@ -64,7 +42,7 @@ export default function Button({
     return (
         <button
                 type={type}
-                onClick={handleClick}
+                onClick={(event) => handleClick(event, onClick)}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className={baseClasses}
@@ -74,34 +52,34 @@ export default function Button({
                     <span className="flex items-center justify-center w-full">
                         {children}
                     </span>
-                ) : (
-                <span className="inline-block">
-                    {characters.map((char, index) => (
-                        <span
-                            key={index}
-                            className="button-char-container"
-                        >
-                            <span 
-                                className="button-char-stack"
-                                style={{
-                                    transform: wasClicked ? 'translateY(0)' : undefined,
-                                    transitionDelay: wasClicked 
-                                        ? '0s' 
-                                        : (isHovered 
-                                            ? `${index * 0.02}s` 
-                                            : `${(characters.length - index - 1) * 0.02}s`)
-                                }}
+                ) : shouldAnimate ? (
+                    <span className="inline-block">
+                        {characters.map((char, index) => (
+                            <span
+                                key={index}
+                                className="button-char-container"
                             >
-                                <span className="button-char-item">
-                                    {char === ' ' ? '\u00A0' : char}
-                                </span>
-                                <span className="button-char-item">
-                                    {char === ' ' ? '\u00A0' : char}
+                                <span 
+                                    className="button-char-stack"
+                                    style={{
+                                        transform: wasClicked ? 'translateY(0)' : undefined,
+                                        transitionDelay: getTransitionDelay(index)
+                                    }}
+                                >
+                                    <span className="button-char-item">
+                                        {char === ' ' ? '\u00A0' : char}
+                                    </span>
+                                    <span className="button-char-item">
+                                        {char === ' ' ? '\u00A0' : char}
+                                    </span>
                                 </span>
                             </span>
-                        </span>
-                    ))}
-                </span>
+                        ))}
+                    </span>
+                ) : (
+                    <span className="flex items-center justify-center w-full">
+                        {children}
+                    </span>
                 )}
             </button>
     );

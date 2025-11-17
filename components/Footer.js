@@ -1,5 +1,6 @@
 import Ctnr from "@/components/Ctnr";
 import Image from "next/image";
+import RollingLink from "@/components/RollingLink";
 
 export default function Footer() {
     return (
@@ -17,18 +18,46 @@ export default function Footer() {
                     <div className="p-8 bg-[var(--color-tertiary)] text-white rounded-xl flex flex-col gap-2">
                         <h3 className="text-lg instrument-serif-regular opacity-75">COMPANY</h3>
                         <ul className="flex flex-col">
-                            <li><a href="#" className="hover:underline">About Us</a></li>
-                            <li><a href="#" className="hover:underline">Our Services</a></li>
-                            <li><a href="#" className="cursor-progress">Blog</a></li>
-                            <li><a href="#" className="hover:underline">Terms & Conditions</a></li>
-                            <li><a href="#" className="hover:underline">Privacy Policy</a></li>
+                            <li>
+                                <RollingLink href="#" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    About Us
+                                </RollingLink>
+                            </li>
+                            <li>
+                                <RollingLink href="#" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    Our Services
+                                </RollingLink>
+                            </li>
+                            <li>
+                                <a href="#" as="anchor" className="cursor-progress">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <RollingLink href="#" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    Terms & Conditions
+                                </RollingLink>
+                            </li>
+                            <li>
+                                <RollingLink href="#" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    Privacy Policy
+                                </RollingLink>
+                            </li>
                         </ul>
                     </div>
                     <div className="p-8 bg-[var(--color-tertiary)] text-white rounded-xl flex flex-col gap-2">
                         <h3 className="text-lg instrument-serif-regular opacity-75">CONNECT</h3>
                         <ul className="flex flex-col">
-                            <li><a href="mailto:info@yuktii.in" className="hover:underline">info@yuktii.in</a></li>
-                            <li><a href="mailto:mvn@yuktii.in" className="hover:underline">mvn@yuktii.in</a></li>
+                            <li>
+                                <RollingLink href="mailto:info@yuktii.in" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    info@yuktii.in
+                                </RollingLink>
+                            </li>
+                            <li>
+                                <RollingLink href="mailto:mvn@yuktii.in" as="anchor" className="hover:underline hover:text-[var(--color-primary)]">
+                                    mvn@yuktii.in
+                                </RollingLink>
+                            </li>
                         </ul>
                     </div>
                     <div className="p-8 bg-[var(--color-tertiary)] text-white rounded-xl">
