@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import Button from "@/components/Button";
 import Ctnr from "@/components/Ctnr";
 
 const testimonials = [
@@ -7,7 +11,6 @@ const testimonials = [
         quote: "Mr MV Narayana was a crucial trainer and mentor in our India capacity-building initiative. His workshops on organizational development, fundraising, and communication were engaging, insightful, and full of actionable takeaways. The feedback from our NGO partners was overwhelmingly positive, and his long-term mentoring has left a lasting legacy.",
         author: "Alli Basker",
         role: "Head of Mission, CESVI India",
-        span: "lg:col-span-2",
     },
     {
         id: "collaboration",
@@ -15,7 +18,6 @@ const testimonials = [
         quote: "Working with Mr. Narayana was a transformative experience for TB Alert India. His strategic foresight and hands-on support in creating a five-year growth plan gave us renewed focus and a clear sense of direction. Mr. Narayana's ability to combine thought leadership with practical execution is truly unique, and his expertise has been invaluable to our organization. We are grateful for his guidance and highly recommend him to any organization seeking strategic planning and growth expertise.",
         author: "Dr. Prabhakar Varma",
         role: "Chairman, TB Alert India",
-        span: "lg:col-span-4",
     },
     {
         id: "speed",
@@ -23,7 +25,6 @@ const testimonials = [
         quote: "The training and mentorship provided by Mr. Narayana marked a pivotal moment in VIEWS’ journey. His profound expertise in nonprofit systems and organizational sustainability significantly strengthened our internal structures and enhanced our fundraising strategies. Mr. Narayana is a true capacity builder, empowering organizations from within by fostering leadership, strategic clarity, and long-term resilience.",
         author: "S.Bheema Rao",
         role: "Executive Director, VIEWS",
-        span: "lg:col-span-4",
     },
     {
         id: "capacity",
@@ -31,33 +32,75 @@ const testimonials = [
         quote: "MV Narayana’s insights on social messaging and strategy for ‘Kadvi Hawa’ and ‘Halkaa’ were extremely valuable. His understanding of development themes and how to communicate them effectively through film helped us engage both policy influencers and the broader community. His role went beyond consulting – he became a thought partner.",
         author: "Nila Madhab Panda",
         role: "Padma Sri Awardee, Acclaimed Filmmaker",
-        span: "lg:col-span-2",
     },
 ];
 
 export default function Testimonials() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const total = testimonials.length;
+    const { title, quote, author, role } = testimonials[activeIndex];
+
+    const showPrevious = () => setActiveIndex((prev) => (prev - 1 + total) % total);
+    const showNext = () => setActiveIndex((prev) => (prev + 1) % total);
+
     return (
-        <section className="py-8 md:py-20 md:pb-8">
-            <Ctnr className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-6 lg:grid-rows-2">
-                    {testimonials.map(({ id, span, title, quote, author, role }) => (
-                        <div key={id} className={`flex p-px ${span}`}>
-                            <article className="flex h-full w-full flex-col justify-between overflow-hidden rounded-xl bg-white shadow-xs outline outline-gray-200">
-                                <div className="p-10">
-                                    <p className="mt-2 text-2xl instrument-serif-regular text-[var(--color-secondary)]">{title}</p>
-                                    <p className="mt-4 text-base text-gray-600">{quote}</p>
-                                </div>
-                                <div className="border-t border-gray-100 px-10 py-6">
-                                    <p className="text-base font-semibold text-[var(--color-tertiary)]">{author}</p>
-                                    <p className="text-sm text-gray-500">{role}</p>
-                                </div>
-                            </article>
+        <section className="bg-white py-16 pb-8">
+            <Ctnr>
+                <figure className="relative mx-auto rounded-xl border border-gray-200 px-8 py-12 pb-24 sm:px-12 sm:pb-28">
+                    <p className="sr-only">
+                        Viewing testimonial {activeIndex + 1} of {total}
+                    </p>
+                    <p className="text-3xl sm:text-4xl text-[var(--color-secondary)] instrument-serif-regular">{title}</p>
+                    <blockquote className="mt-8 text-xl leading-8 text-[var(--color-tertiary)] sm:text-2xl sm:leading-9">
+                        <p>&ldquo;{quote}&rdquo;</p>
+                    </blockquote>
+                    <figcaption className="mt-10 text-md leading-6 text-gray-600">
+                        <div className="text-xl font-medium text-gray-900">{author}</div>
+                        <div>{role}</div>
+                    </figcaption>
+
+                    <div className="absolute bottom-6 right-6 flex items-center gap-4 sm:bottom-8 sm:right-8">
+                        <span className="text-sm font-medium text-gray-500">
+                            {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                        </span>
+                        <div className="flex gap-2">
+                            <Button
+                                variant="ghost"
+                                onClick={showPrevious}
+                                aria-label="Show previous testimonial"
+                                className="bg-white text-gray-900 border border-gray-200 hover:border-gray-300 px-2 py-2 rounded-full"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                onClick={showNext}
+                                aria-label="Show next testimonial"
+                                className="bg-white text-gray-900 border border-gray-200 hover:border-gray-300 px-2 py-2 rounded-full"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </Button>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                </figure>
             </Ctnr>
         </section>
     );
 }
-
 

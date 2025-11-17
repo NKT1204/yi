@@ -6,6 +6,7 @@ export default function Button({
     children,
     onClick,
     className = "",
+    variant = "primary",
     type = "button",
     ...props
 }) {
@@ -70,6 +71,11 @@ export default function Button({
                 `}
                 {...props}
             >
+                {variant === "ghost" ? (
+                    <span className="flex items-center justify-center w-full">
+                        {children}
+                    </span>
+                ) : (
                 <span className="inline-block">
                     {characters.map((char, index) => (
                         <span
@@ -97,6 +103,7 @@ export default function Button({
                         </span>
                     ))}
                 </span>
+                )}
             </button>
     );
 }

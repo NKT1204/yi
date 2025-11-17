@@ -34,10 +34,10 @@ function ServiceCard({ title, description }) {
                 *
             </span>
             <div className="space-y-4">
-                <h3 className="text-3xl sm:text-4xl font-semibold instrument-serif-regular">
+                <h3 className="text-3xl sm:text-4xl instrument-serif-regular">
                     {title}
                 </h3>
-                <p className="text-white/80 leading-relaxed">{description}</p>
+                <p className="text-base md:text-lg text-white/80 leading-relaxed">{description}</p>
             </div>
         </div>
     );

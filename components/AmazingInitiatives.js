@@ -61,13 +61,13 @@ export default function AmazingInitiatives() {
                         We have worked with some amazing initiatives.
                     </h2>
                 </div>
-                <div className="mx-auto flow-root max-w-2xl mt-8 sm:mt-12 lg:mx-0 lg:max-w-none">
-                    <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+                <div className="mx-auto max-w-2xl mt-8 sm:mt-12 lg:mx-0 lg:max-w-none">
+                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         {testimonials.map((testimonial) => (
-                            <div key={testimonial.author.handle} className="pt-8 sm:inline-block sm:w-full sm:px-4">
-                                <figure className="rounded-xl border bg-white border-gray-200 shadow-2xs p-8 leading-relaxed">
+                            <div key={testimonial.author.name} className="h-full">
+                                <figure className="flex h-full flex-col rounded-xl border bg-white border-gray-200 shadow-2xs p-8 leading-relaxed">
                                     <div className="mb-3 text-2xl text-[var(--color-secondary)] instrument-serif-regular">{testimonial.author.name}</div>
-                                    <blockquote className="text-gray-700">
+                                    <blockquote className="text-gray-700 flex-1">
                                         <p>{`${testimonial.body}`}</p>
                                     </blockquote>
                                     <img alt="" src={testimonial.author.imageUrl} className="mt-6 w-full h-auto" />
