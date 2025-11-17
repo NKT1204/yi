@@ -25,7 +25,7 @@ const stats = [
 
 export default function WhatWeBring() {
     return (
-        <section className="bg-[var(--color-secondary)] text-white py-8 md:py-24 mx-4 rounded-3xl">
+        <section className="bg-[var(--color-secondary)] text-white py-8 md:py-24 mx-4 rounded-xl">
             <Ctnr>
                 <div className="text-center space-y-4 mb-12">
                     <p className="text-sm uppercase tracking-[0.35em] text-white/70">
@@ -40,12 +40,13 @@ export default function WhatWeBring() {
                     {stats.map(({ value, label, icon }) => (
                         <div
                             key={label}
-                            className="text-center border border-white/15 rounded-2xl px-6 py-10 bg-white/5 backdrop-blur-sm flex flex-col gap-6"
+                            // className="text-center border border-white/15 rounded-2xl px-6 py-10 bg-white/5 backdrop-blur-sm flex flex-col gap-6"
+                            className="text-center px-6 py-10 flex flex-col gap-8"
                         >
                             <div className="flex justify-center">
                                 <div
                                     aria-hidden="true"
-                                    className="w-20 h-20 bg-[var(--color-primary)]"
+                                    className="w-40 h-40 bg-[var(--color-primary)]"
                                     style={{
                                         WebkitMaskImage: `url(${icon})`,
                                         maskImage: `url(${icon})`,
