@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "@/components/Button";
 import Ctnr from "@/components/Ctnr";
@@ -45,9 +46,25 @@ export default function Testimonials() {
     const showNext = () => setActiveIndex((prev) => (prev + 1) % total);
 
     return (
-        <section className="bg-white py-16 pb-8">
+        <section className="bg-white py-16 pb-8 overflow-x-hidden">
             <Ctnr>
-                <figure className="relative mx-auto rounded-xl border border-gray-200 px-8 py-12 pb-24 sm:px-12 sm:pb-28">
+                <figure className="relative mx-auto px-0 py-12 pb-24 sm:pb-28">
+                    <Image
+                        src="/images/quotes.svg"
+                        alt=""
+                        width={260}
+                        height={216}
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -bottom-10 -left-6 w-16 opacity-60 sm:-bottom-2 sm:-left-16 sm:w-32 hidden sm:inline"
+                    />
+                    <Image
+                        src="/images/quotes.svg"
+                        alt=""
+                        width={260}
+                        height={216}
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -top-10 -right-6 w-16 rotate-180 opacity-60 sm:top-2 sm:-right-10 sm:w-32 hidden sm:inline"
+                    />
                     <p className="sr-only">
                         Viewing testimonial {activeIndex + 1} of {total}
                     </p>
@@ -60,7 +77,7 @@ export default function Testimonials() {
                         <div>{role}</div>
                     </figcaption>
 
-                    <div className="absolute bottom-6 right-6 flex items-center gap-4 sm:bottom-8 sm:right-8">
+                    <div className="absolute bottom-6 right-0 flex items-center gap-4 sm:bottom-8 sm:right-8">
                         <span className="text-sm font-medium text-gray-500">
                             {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                         </span>
