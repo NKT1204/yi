@@ -8,6 +8,7 @@ export default function Button({
     className = "",
     variant = "primary",
     type = "button",
+    iconOnly = false,
     ...props
 }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -23,7 +24,8 @@ export default function Button({
     };
     
     const text = getTextContent(children);
-    const characters = text.split('');
+    const shouldAnimateCharacters = !iconOnly && variant !== "ghost" && text.length > 0;
+    const characters = shouldAnimateCharacters ? text.split('') : [];
     
     const handleClick = (e) => {
         setIsHovered(false);
@@ -42,36 +44,33 @@ export default function Button({
         }
     };
     
+    const baseClasses = [
+        'button-rolling',
+        isHovered && !wasClicked ? 'button-rolling-hovered' : '',
+        wasClicked ? 'button-rolling-no-animate' : '',
+        'relative flex items-center justify-center',
+        iconOnly ? 'w-11 h-11 p-0 aspect-square' : 'px-4 py-2',
+        'rounded-lg',
+        'cursor-pointer',
+        'transform transition-all duration-200 ease-out',
+        'hover:opacity-95 hover:-translate-y-0.25 hover:shadow-sm',
+        'active:translate-y-1.25 active:shadow-none active:duration-180 active:ease-in',
+        'overflow-hidden',
+        className
+    ]
+        .filter(Boolean)
+        .join(' ');
+
     return (
         <button
                 type={type}
                 onClick={handleClick}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                className={`
-                    button-rolling
-                    ${isHovered && !wasClicked ? 'button-rolling-hovered' : ''}
-                    ${wasClicked ? 'button-rolling-no-animate' : ''}
-                    relative
-                    flex items-center justify-center
-                    px-4 py-2
-                    rounded-lg
-                    cursor-pointer
-                    transform
-                    transition-all duration-200 ease-out
-                    hover:opacity-95
-                    hover:-translate-y-0.25
-                    hover:shadow-sm
-                    active:translate-y-1.25
-                    active:shadow-none
-                    active:duration-180
-                    active:ease-in
-                    overflow-hidden
-                    ${className}
-                `}
+                className={baseClasses}
                 {...props}
             >
-                {variant === "ghost" ? (
+                {variant === "ghost" || iconOnly ? (
                     <span className="flex items-center justify-center w-full">
                         {children}
                     </span>

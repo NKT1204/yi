@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "@/components/Button";
 import Ctnr from "@/components/Ctnr";
 
@@ -66,35 +67,21 @@ export default function Testimonials() {
                         <div className="flex gap-2">
                             <Button
                                 variant="ghost"
+                                iconOnly
                                 onClick={showPrevious}
                                 aria-label="Show previous testimonial"
-                                className="bg-white text-gray-900 border border-gray-200 hover:border-gray-300 px-2 py-2 rounded-full"
+                                className="border border-gray-200 text-[var(--color-tertiary)] hover:border-gray-300 rounded-md"
                             >
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <ChevronLeft className="h-5 w-5" aria-hidden="true" />
                             </Button>
                             <Button
                                 variant="ghost"
+                                iconOnly
                                 onClick={showNext}
                                 aria-label="Show next testimonial"
-                                className="bg-white text-gray-900 border border-gray-200 hover:border-gray-300 px-2 py-2 rounded-full"
+                                className="border border-gray-200 text-[var(--color-tertiary)] hover:border-gray-300 rounded-md"
                             >
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <ChevronRight className="h-5 w-5" aria-hidden="true" />
                             </Button>
                         </div>
                     </div>
