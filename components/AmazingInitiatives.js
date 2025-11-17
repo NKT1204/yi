@@ -55,7 +55,7 @@ export default function AmazingInitiatives() {
     return (
         <div className="py-18 relative isolate overflow-hidden">
             <Ctnr>
-                <div className="max-w-2xl">
+                <div className="max-w-2xl text-center mx-auto lg:mx-0 lg:text-left">
                     <p className="text-sm uppercase tracking-[0.35em] text-[var(--color-tertiary)]">You're in good company</p>
                     <h2 className="mt-2 text-4xl md:text-5xl/13 instrument-serif-regular text-[var(--color-secondary)]">
                         We have worked with some amazing initiatives.
