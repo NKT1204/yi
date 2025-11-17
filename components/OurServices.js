@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Ctnr from "@/components/Ctnr";
 import Button from "@/components/Button";
 
@@ -27,12 +28,14 @@ const services = [
 function ServiceCard({ title, description }) {
     return (
         <div className="border border-white/20 rounded-xl p-6 md:p-8 bg-white/5 backdrop-blur-sm transition-transform duration-200 hover:-translate-y-1">
-            <span
+            <Image
+                src="/images/services-placeholder.svg"
+                alt=""
                 aria-hidden="true"
-                className="text-3xl text-[var(--color-primary)] mb-4 block"
-            >
-                *
-            </span>
+                width={48}
+                height={48}
+                className="w-6 h-6 md:w-8 md:h-8 mb-4"
+            />
             <div className="space-y-4">
                 <h3 className="text-3xl sm:text-4xl instrument-serif-regular">
                     {title}
